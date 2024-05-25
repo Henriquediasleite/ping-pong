@@ -17,7 +17,26 @@
     <script>
         const canvasEL = document.querySelector('canvas')
         const canvasCtx = canvasEL.getContext("2d")
+
         const lineWidth = 15
+        const field = {
+            w: window.innerWidth,
+            h: window.innerHeight,
+            draw: function() {
+                canvasCtx.fillStyle = ("#286047")
+            canvasCtx.fillRect(0, 0, this.w, this.h)
+            }
+        }
+
+        const line = {
+            w: 15,
+            h: window.h,
+            draw: function() {
+                canvasCtx.fillStyle = ("#ffffff")
+                canvasCtx.fillRect(
+                    field.w / 2 - this.w / 2, 0, this.w, this.h)
+            }
+        }
 
         function setup() {
             canvasEL.width = window.innerWidth
@@ -27,18 +46,7 @@
         }
 
         function draw() {
-            //desenho do campo
-            canvasCtx.fillStyle = ("#286047")
-            canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight)
-
-            //desenho da linha central
-            const x = window.innerWidth / 2 - lineWidth / 2
-            const y = 0
-            const w = lineWidth
-            const h = window.innerHeight
-
-            canvasCtx.fillStyle = ("#ffffff")
-            canvasCtx.fillRect(x, y, w, h)
+            field.draw()
 
             //desenho da raquete esquerda
             canvasCtx.fillRect(10, 100, lineWidth, 200)
